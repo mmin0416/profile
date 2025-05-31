@@ -1,483 +1,494 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>Seho Lee</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/logo.ico" rel="icon">
-  <link href="assets/img/logo.ico" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-
-  <!--아이콘-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seho Lee | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <style type="text/css">
-    @font-face {
-      font-family: 'jeju';
-      src: url('/assets/font/jejudoldam.woff') format('woff');
+  <link rel="icon" href="assets/img/logo.ico">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #f8f9fa; margin: 0; }
+    .navbar {
+      width: 100%;
+      background: #22243a;
+      display: flex;
+      justify-content: center;    /* PC 중앙정렬 */
+      align-items: center;
+      padding: 0.6em 0;
+      box-shadow: 0 2px 8px rgba(34,36,58,.06);
+      position: relative;
     }
-    @font-face {
-      font-family: 'hy';
-      src: url('/assets/font/fontYouandiModernTR.ttf') format('woff');
+    .navbar ul {
+      margin: 0 auto;             /* PC 메뉴 중앙 */
+      padding: 0;
+      list-style: none;
+      display: flex;
+      gap: 32px;
     }
-
-
-    /*a, li, h2, span, p, h3{*/
-    /*  !*font-family: 'jeju';*!*/
-    /*  font-family: hy;*/
-    /*}*/
-  </style>
+    .navbar li { display: inline-block; }
+    .navbar a { color: #e4c590; text-decoration: none; font-weight: 600; letter-spacing: 0.5px; font-size: 1.07em; padding: 4px 12px; border-radius: 12px; transition: background .18s, color .18s;}
+    .navbar a.active, .navbar a:hover { background: #e4c590; color: #22243a;}
+    /* 햄버거 메뉴 버튼 */
+    .navbar-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2.2em;
+      color: #e4c590;
+      position: absolute;
+      right: 0;    /* 모바일 우측 끝 */
+      top: 8px;
+      cursor: pointer;
+      z-index: 1100;
+      padding-right: 14px;
+    }
+    @media (max-width: 700px) {
+      .navbar ul {
+        display: none;
+        flex-direction: column;
+        background: #22243a;
+        position: absolute;
+        top: 48px;
+        left: 0;
+        width: 100vw;
+        z-index: 1001;
+        box-shadow: 0 4px 20px rgba(34,36,58,0.17);
+        padding-bottom: 12px;
+      }
+      .navbar ul.show { display: flex; }
+      .navbar-toggle { display: block; }
+      .navbar { min-height: 44px; }
+    }
+    .tab-content { display: none; padding: 40px 12px 20px 12px; max-width: 960px; margin: 0 auto;}
+    .tab-content.active { display: block; }
+    .section-title { margin-bottom: 24px; text-align: left;}
+    
+    /* About */
+    .about-row {
+      max-width: 900px;
+      margin: 0 auto;
+      align-items: flex-start;
+      display: flex;
+      gap: 48px;
+    }
+    .profile-img { width: 160px; border-radius: 14px; box-shadow: 0 4px 24px rgba(34,36,58,0.08); background: #fff; }
+    .about-text { flex: 1; min-width: 210px; max-width:520px; margin:0; font-size:1.05em; line-height:1.7; color:#232425; }
+    
+    /* Welcome */
+    .welcome-content { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 320px;}
+    .welcome-content h1 { font-family: 'Playfair Display', serif; font-size: 2.4em; color: #e4c590; margin-top: 28px;}
+    .welcome-content h2 { font-size: 1.25em; font-weight: 400; }
+    .social-links { margin-top: 12px;}
+    .social-links a { margin: 0 7px; color: #e4c590; font-size: 1.45em; text-decoration: none; transition: color 0.2s;}
+    .social-links a:hover { color: #fff1d6;}
+    
+    /* Resume */
+    .resume-list-centered {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .resume-item {
+      width: 100%;
+      max-width: 410px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 14px 10px 12px 10px;
+      background: #fff;
+      border-radius: 13px;
+      box-shadow: 0 2px 12px rgba(34,36,58,0.06);
+      transition: box-shadow .2s;
+    }
+    .resume-item:not(:last-child) { margin-bottom: 4px;}
+    .resume-item:hover {
+      box-shadow: 0 6px 32px rgba(34,36,58,0.11);
+      transform: scale(1.014);
+    }
+    .resume-heading {
+      font-size: 1em;
+      color: #22243a;
+      font-family: 'Playfair Display', serif;
+      font-weight: bold;
+      margin-bottom: 3px;
+      line-height: 1.35;
+      word-break: break-all;
+    }
+    .resume-location {
+      color: #e4c590;
+      font-size: 0.93em;
+      font-weight: 500;
+      margin-left: 6px;
+    }
+    .resume-period {
+      color: #7d7d7d;
+      font-size: 0.92em;
+      margin-left: 6px;
+      font-family: 'Inter', sans-serif;
+    }
+    .resume-jobs {
+      color: #555;
+      font-size: 0.97em;
+      font-weight: 500;
+      margin-top: 0px;
+      letter-spacing: 0.01em;
+      font-family: 'Inter', sans-serif;
+      word-break: break-all;
+    }
+    
+    /* Portfolio */
+    .portfolio-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+    }
+    .portfolio-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(34,36,58,0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-width: 180px;
+      max-width: 270px;
+      margin: 0 auto;
+      align-items: center;
+      text-align: center;
+    }
+    .portfolio-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: contain;   /* 사진 전체 보이게 */
+      background: #fff;
+      border-top-left-radius: 14px;
+      border-top-right-radius: 14px;
+      padding: 8px 0 8px 0;
+    }
+    .portfolio-info { padding: 10px 9px 8px 9px; }
+    .portfolio-info h4 { margin: 0 0 2px 0; font-size: 1em; font-weight: 600;}
+    .portfolio-info p { margin: 0 0 1px 0; color: #727b8b; font-size: 0.98em;}
+    .portfolio-info a { color: #e4c590; text-decoration: none; font-size: 0.95em;}
+    
+    /* Contact */
+    .contact-blocks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 12px;
+    }
+    .contact-block {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(34,36,58,0.08);
+      display: flex;
+      align-items: center;
+      min-width: 160px;
+      max-width: 320px;
+      flex: 1 1 165px;
+      padding: 13px 16px 12px 12px;
+      transition: box-shadow .2s;
+      margin: 0 auto;
+    }
+    .contact-block:hover {
+      box-shadow: 0 4px 22px rgba(34,36,58,0.13);
+      transform: translateY(-1px) scale(1.018);
+    }
+    .contact-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      font-size: 1.3em;
+      margin-right: 10px;
+      color: #22243a;
+      background: #e4c590;
+    }
+    .contact-info-detail { flex: 1; }
+    .contact-title {
+      font-size: 1em;
+      color: #22243a;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .contact-block a {
+      color: #e4c590;
+      font-weight: 500;
+      text-decoration: none;
+      word-break: break-all;
+      font-size: 0.98em;
+    }
+    .contact-block a:hover {
+      text-decoration: underline;
+      color: #b49554;
+    }
+    @media (max-width: 800px) {
+      .about-row { flex-direction: column; gap: 15px; max-width:97vw; align-items: center;}
+      .about-text { max-width:98vw !important; margin:0 auto !important; font-size:0.99em;}
+      .profile-img { margin:0 auto 8px auto; width:95px !important; min-width:75px !important; border-radius:9px;}
+      .welcome-content h1 { font-size: 1.45em; }
+      .tab-content { padding: 19px 5px 12px 5px;}
+      .resume-item { max-width: 95vw; padding: 8px 4px 7px 4px; }
+      .resume-heading { font-size: 0.97em; }
+      .resume-jobs { font-size: 0.91em;}
+      .section-title { margin-bottom: 10px;}
+      .portfolio-row { gap: 10px; }
+      .portfolio-card { min-width: 120px; max-width: 95vw;}
+      .portfolio-card img { height: 100px; padding: 4px 0 4px 0; }
+      .contact-blocks { gap: 7px; }
+      .contact-block { min-width: 95vw; max-width: 95vw; padding: 7px 6px 7px 6px;}
+      .contact-title { font-size: 0.97em;}
+    }
+    </style>
 </head>
-
 <body>
-
-  <!-- ======= Header ======= -->
-  <header id="header">
-    <div class="container">
-
-      <h1>Seho Lee</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
-<!--      <h2>I'm a passionate <span>Developer</span></h2>-->
-      <h2>Hello,<br>I'm a communicator who connects <span>coffee & people!</span> </h2>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link active" href="#header">Home</a></li>
-          <li><a class="nav-link" href="#about">About</a></li>
-          <li><a class="nav-link" href="#resume">Resume</a></li>
-          <li><a class="nav-link" href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
+  <nav class="navbar">
+    <button class="navbar-toggle" aria-label="Toggle navigation"><i class="bi bi-list"></i></button>
+    <ul>
+      <li><a class="nav-link active" href="#" data-tab="welcome">Home</a></li>
+      <li><a class="nav-link" href="#" data-tab="about">About</a></li>
+      <li><a class="nav-link" href="#" data-tab="resume">Resume</a></li>
+      <li><a class="nav-link" href="#" data-tab="portfolio">Portfolio</a></li>
+      <li><a class="nav-link" href="#" data-tab="contact">Contact</a></li>
+    </ul>
+  </nav>
+  <!-- ----- WELCOME ----- -->
+  <div id="welcome" class="tab-content active">
+    <div class="welcome-content">
+      <h1>Hazel Hong</h1>
+      <h2 style="margin-bottom:10px;">
+        Hello,<br>
+        <span style="font-weight:500;">
+          I'm a communicator who connects <span style="color:#e4c590;">coffee &amp; people!</span>
+        </span>
+      </h2>
+      <p style="font-size:1em; color:#b49554; margin-top:7px; margin-bottom:0;">
+        always searching for new ways to bring people together, one cup at a time.
+      </p>
       <div class="social-links">
-        <a href="https://www.instagram.com/sehohahaha" target="_blank"  class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="https://www.youtube.com/sehobottle" target="_blank"  class="instagram"><i class="fa fa-youtube-play" style="font-size:24px"></i></a>
-        <a href="tel:+61435680981" target="_blank"  class="instagram"><i class="fa fa-phone" style="font-size:20px"></i></a>
+        <a href="https://www.instagram.com/sehohahaha" target="_blank"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.youtube.com/sehobottle" target="_blank"><i class="fa fa-youtube-play"></i></a>
+        <a href="tel:+61435680981" target="_blank"><i class="fa fa-phone"></i></a>
       </div>
-
     </div>
-  </header><!-- End Header -->
-
-  <!-- ======= About Section ======= -->
-  <section id="about" class="about">
-
-    <!-- ======= About Me ======= -->
-    <div class="about-me container">
-
-      <div class="section-title">
-        <h2>About</h2>
-        <p>Learn more about me</p>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-4" data-aos="fade-right">
-          <!-- 여기에 파일 위치 맞게 사진 넣기 -->
-          <img src="assets/img/me.jpg" class="img-fluid" alt="">
+  </div>
+  <!-- ----- ABOUT ----- -->
+  <div id="about" class="tab-content">
+    <div class="section-title"><h2>About</h2><p>Learn more about me</p></div>
+    <div class="about-row">
+      <img src="assets/img/me.jpg" class="profile-img" alt="Profile photo">
+      <div class="about-text">
+        <p style="font-size:1.13em; font-weight:600; color:#22243a; margin-bottom:10px;">Hi everyone!</p>
+        <p>I have a range of experiences working at different cafes in Korea and Australia.</p>
+        <p>Through these experiences I have learnt customer service, teamwork, setting and achieving goals and objectives.</p>
+        <p><span style="color:#e4c590; font-weight:500;">Consistency and enthusiasm</span> are my strengths.</p>
+        <p>My military service in Korea made me disciplined and ready to take responsibility.</p>
+        <p style="margin-bottom:10px;">I bring these qualities to every workplace.</p>
+        <div style="margin-top:10px; color:#b49554;">
+          <strong>Mobile:</strong> <a href="tel:+61435680981" style="color:#b49554; text-decoration:underline;">+61 435 680 981</a> / <a href="tel:+821088610864" style="color:#b49554; text-decoration:underline;">+82 10 8861 0864</a><br>
+          <strong>Email:</strong> <a href="mailto:lsh0301kr@gmail.com" style="color:#b49554; text-decoration:underline;">lsh0301kr@gmail.com</a>
         </div>
-        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <h3>Barista</h3>
-          <p class="fst-italic">
-            
-          </p>
-          <div class="row">
-            <div class="col-lg-6">
-              <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Mobile : </strong> <span><p><a href="tel:+61435680981" >+61 435 680 981 </a></p></span></li>
-              </ul>
-            </div>
-            <div class="col-lg-6">
-              <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Email : </strong> <span><a href="mailto:lsh0301kr@gmail.com">lsh0301kr@gmail.com</a> </span></li>
-              </ul>
-            </div>
+      </div>
+    </div>
+  </div>
+  <!-- ----- RESUME ----- -->
+  <div id="resume" class="tab-content">
+    <div class="section-title"><h2>Resume</h2></div>
+    <div class="resume-list-centered">
+      <div class="resume-item">
+        <div class="resume-heading">
+          Balibola <span class="resume-location">Melbourne, Australia</span> <span class="resume-period">Feb 2024 - Dec 2024</span>
+        </div>
+        <div class="resume-jobs">Barista Manager · Coffee Trainer · Menu Developer · Quality Control</div>
+      </div>
+      <div class="resume-item">
+        <div class="resume-heading">
+          Tone Coffee <span class="resume-location">Melbourne, Australia</span> <span class="resume-period">Feb 2024 - May 2024</span>
+        </div>
+        <div class="resume-jobs">Barista · Retailer · Menu Developer · Quality Control</div>
+      </div>
+      <div class="resume-item">
+        <div class="resume-heading">
+          8 Murray Cafe <span class="resume-location">Melbourne, Australia</span> <span class="resume-period">Sep 2023 - Dec 2023</span>
+        </div>
+        <div class="resume-jobs">Barista Manager · Coffee Trainer · Quality Control</div>
+      </div>
+      <div class="resume-item">
+        <div class="resume-heading">
+          Momos Coffee <span class="resume-location">Busan, Korea</span> <span class="resume-period">Jan 2021 - May 2023</span>
+        </div>
+        <div class="resume-jobs">Barista Manager · Coffee Trainer · Quality Control</div>
+      </div>
+      <div class="resume-item">
+        <div class="resume-heading">
+          Around Day <span class="resume-location">Seoul, Korea</span> <span class="resume-period">Jun 2020 - Jan 2021</span>
+        </div>
+        <div class="resume-jobs">Barista · Coffee Trainer · Quality Control</div>
+      </div>
+      <div class="resume-item">
+        <div class="resume-heading">
+          Top Paddock <span class="resume-location">Melbourne, Australia</span> <span class="resume-period">Jan 2019 - Apr 2020</span>
+        </div>
+        <div class="resume-jobs">Barista · Quality Control</div>
+      </div>
+      <div class="resume-item">
+        <div class="resume-heading">
+          Bawa Cafe <span class="resume-location">Melbourne, Australia</span> <span class="resume-period">Jul 2018 - Dec 2018</span>
+        </div>
+        <div class="resume-jobs">Barista · Quality Control</div>
+      </div>
+      <div class="resume-item">
+        <div class="resume-heading">
+          LAB The Bakery Cafe <span class="resume-location">Sydney, Australia</span> <span class="resume-period">Jan 2018 - Jun 2018</span>
+        </div>
+        <div class="resume-jobs">Barista · Quality Control</div>
+      </div>
+      <div class="resume-item">
+        <div class="resume-heading">
+          Coffee Tomorrow <span class="resume-location">Seoul, Korea</span> <span class="resume-period">Apr 2017 - Dec 2017</span>
+        </div>
+        <div class="resume-jobs">Barista · Roaster · Quality Control</div>
+        </div>
+        <div class="resume-item">
+          <div class="resume-heading">
+            My Other Brother <span class="resume-location">Melbourne, Australia</span> <span class="resume-period">Nov 2016 - Apr 2017</span>
           </div>
-          <p>
-            Hi everyone!<br>
-            I have a range of experiences working at different cafes in Korea and Australia.<br>
-Through these experiences I have learnt various skills such as customer service, teamwork, setting and achieving goals and objectives.<br>
-I have stayed consistent at all times in my workplace and maintained a high level of enthusiasm.<br>
-Staying persistent at my workplace, I have always attempted to work for as long as possible and maintained my responsibility as a team member of the company.<br>
-By serving in the Korean army for 2 years, I have become disciplined and learnt to fill a leadership role.<br>
-In every environment, I can utilise these skills in my workplace.
-          </p>
+          <div class="resume-jobs">Barista</div>
         </div>
-      </div>
-      
-    </div><!-- End About Me -->
-
-    <!-- ======= Counts ======= -->
-    
-    
-
-    
-   
-
-  </section><!-- End About Section -->
-
-  <!-- ======= Resume Section ======= -->
-  <section id="resume" class="resume">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Resume</h2>
+        <div class="resume-item">
+          <div class="resume-heading">
+            Caffe Cherry Beans <span class="resume-location">Sydney, Australia</span> <span class="resume-period">May 2016 - Nov 2016</span>
+          </div>
+          <div class="resume-jobs">Barista · Quality Control</div>
+        </div>
+        <div class="resume-item">
+          <div class="resume-heading">
+            Parrotbill Coffee <span class="resume-location">Seoul, Korea</span> <span class="resume-period">Dec 2015 - Apr 2016</span>
+          </div>
+          <div class="resume-jobs">Barista · Roaster · Quality Control</div>
+        </div>
+        <div class="resume-item">
+          <div class="resume-heading">
+            HoLeeChow <span class="resume-location">Seoul, Korea</span> <span class="resume-period">Mar 2014 - Dec 2015</span>
+          </div>
+          <div class="resume-jobs">Coffee Maker · Front of House</div>
+        </div>
+        <div class="resume-item">
+          <div class="resume-heading">
+            Republic of Korea Army <span class="resume-location">The 700th Commando Regiment</span> <span class="resume-period">Jun 2010 - Apr 2012</span>
+          </div>
+          <div class="resume-jobs">Soldier · Sergeant</div>
+        </div>
+        <div class="resume-item">
+          <div class="resume-heading">
+            Samcheonggak Cafe Dawon <span class="resume-location">Seoul, Korea</span> <span class="resume-period">Nov 2009 - Jun 2010</span>
+          </div>
+          <div class="resume-jobs">Coffee Maker · Front of House</div>
+        </div>
+        </div>
+        </div>
         
-      </div>
-
-      <div class="row">
-        <div class="col-lg-6">
-
-          <h3 class="resume-title">Work Experience</h3>
-          <div class="resume-item">
-            <h4>Balibola</h4>
-            <h5>Feb 2024 - Dec 2024</h5>
-            <p><em>Melbourne, Austrailia 🇦🇺</em></p>
-            <p>
-            <ul>
-              <li>Barista Manager</li>
-              <li>Coffee Trainer</li>
-              <li>Menu Developer</li>
-              <li>Quality Control</li>
-            </ul>
-            </p>
+        <!-- ----- PORTFOLIO ----- -->
+        <div id="portfolio" class="tab-content">
+          <div class="section-title"><h2>Portfolio</h2><p>Project Management</p></div>
+          <div class="portfolio-row">
+            <div class="portfolio-card">
+              <img src="assets/img/portfolio/aroundday.jpg" alt="Around Day">
+              <div class="portfolio-info">
+                <h4>Around Day</h4>
+                <p>Seoul, Korea</p>
+                <a href="https://www.instagram.com/around.day/" target="_blank"><i class="bi bi-link-45deg"></i> Instagram</a>
+              </div>
+            </div>
+            <div class="portfolio-card">
+              <img src="assets/img/portfolio/momoscoffee.jpg" alt="Momos Coffee">
+              <div class="portfolio-info">
+                <h4>Momos Coffee</h4>
+                <p>Busan, Korea</p>
+                <a href="https://www.instagram.com/momos_coffee/" target="_blank"><i class="bi bi-link-45deg"></i> Instagram</a>
+              </div>
+            </div>
+            <div class="portfolio-card">
+              <img src="assets/img/portfolio/hillon.jpg" alt="Hillon">
+              <div class="portfolio-info">
+                <h4>Hillon</h4>
+                <p>Yeosu, Korea</p>
+                <a href="https://www.instagram.com/hillon_official/" target="_blank"><i class="bi bi-link-45deg"></i> Instagram</a>
+              </div>
+            </div>
+            <!-- 더 추가하려면 여기 카드 복사해서 붙이면 됨 -->
           </div>
-
-          <div class="resume-item">
-            <h4>8 Murray Cafe</h4>
-            <h5>Sep 2023 - Dec 2023</h5>
-            <p><em>Melbourne, Austrailia 🇦🇺</em></p>
-            <p>
-            <ul>
-              <li>Barista Manager</li>
-              <li>Coffee Trainer</li>
-              <li>Quality Control</li>
-            </ul>
-            </p>
-          </div>
-
-          <div class="resume-item">
-            <h4>Momos Coffee</h4>
-            <h5>Jan 2021 - May 2023</h5>
-            <p><em>Busan, Korea 🇰🇷</em></p>
-            <p>
-            <ul>
-              <li>Barista Manager</li>
-              <li>Coffee Trainer</li>
-              <li>Quality Control</li>
-            </ul>
-            </p>
-          </div>
-
-          <div class="resume-item">
-            <h4>Around Day</h4>
-            <h5>Jun 2020 - Jan 2021</h5>
-            <p><em>Seoul, Korea 🇰🇷</em></p>
-            <p>
-            <ul>
-              <li>Barista</li>
-              <li>Coffee Trainer</li>
-              <li>Quality Control</li>
-            </ul>
-            </p>
-          </div>
-
-          <div class="resume-item">
-            <h4>Top Paddock</h4>
-            <h5>Jan 2019 - Apr 2020</h5>
-            <p><em>Melbourne, Austrailia 🇦🇺</em></p>
-            <p>
-            <ul>
-              <li>Barista</li>
-              <li>Quality Control</li>
-            </ul>
-            </p>
-          </div>
-
-          <div class="resume-item">
-            <h4>Bawa Cafe</h4>
-            <h5>Jul 2018 - Dec 2018</h5>
-            <p><em>Melbourne, Austrailia 🇦🇺</em></p>
-            <p>
-            <ul>
-              <li>Barista</li>
-              <li>Quality Control</li>
-            </ul>
-            </p>
-          </div>
-
-          <div class="resume-item">
-            <h4>LAB The Bakery Cafe</h4>
-            <h5>Jan 2018 - Jun 2018</h5>
-            <p><em>Sydney, Austrailia 🇦🇺</em></p>
-            <p>
-            <ul>
-              <li>Barista</li>
-              <li>Quality Control</li>
-            </ul>
-            </p>
-          </div>
-
-          <div class="resume-item">
-            <h4>Coffee Tomorrow</h4>
-            <h5>Apr 2017 - Dec 2017</h5>
-            <p><em>Seoul, Korea 🇰🇷</em></p>
-            <p>
-            <ul>
-              <li>Barista</li>
-              <li>Roaster</li>
-              <li>Quality Control</li>
-            </ul>
-            </p>
-          </div>
-
-          <div class="resume-item">
-            <h4>My Other Brother</h4>
-            <h5>Nov 2016 - Apr 2017</h5>
-            <p><em>Melbourne, Austrailia 🇦🇺</em></p>
-            <p>
-            <ul>
-              <li>Barista</li>
-            </ul>
-            </p>
-          </div>
-
-          <div class="resume-item">
-            <h4>Caffe Cherry Beans</h4>
-            <h5>May 2016 - Nov 2016</h5>
-            <p><em>Sydney, Austrailia 🇦🇺</em></p>
-            <p>
-            <ul>
-              <li>Barista</li>
-              <li>Quality Control</li>
-            </ul>
-            </p>
-          </div>
-
-          <div class="resume-item">
-            <h4>Parrotbill Coffee</h4>
-            <h5>Dec 2015 - Apr 2016</h5>
-            <p><em>Seoul, Korea 🇰🇷</em></p>
-            <p>
-            <ul>
-              <li>Barista</li>
-              <li>Roaster</li>
-              <li>Quality Control</li>
-            </ul>
-            </p>
-          </div>
-
-          <div class="resume-item">
-            <h4>HoLeeChow</h4>
-            <h5>Mar 2014 - Dec 2015</h5>
-            <p><em>Seoul, Korea 🇰🇷</em></p>
-            <p>
-            <ul>
-              <li>Coffee Maker</li>
-              <li>Front of House</li>
-            </ul>
-            </p>
-          </div>
-
-          <div class="resume-item">
-            <h4>Republic of Korea Army</h4>
-            <h5>2010.Jun - 2012.Apr</h5>
-            <p><em>The 700th Commando Regiment</em></p>
-            <p>
-            <ul>
-              <li>Soldier</li>
-              <li>Sergeant</li>
-            </ul>
-            </p>
-          </div>
-
-          <div class="resume-item">
-            <h4>Samcheonggak Cafe Dawon</h4>
-            <h5>2009.Nov - 2010.Jun</h5>
-            <p><em>Seoul, Korea 🇰🇷</em></p>
-            <p>
-            <ul>
-              <li>Coffee Maker</li>
-              <li>Front of House</li>
-            </ul>
-            </p>
-          </div>
-          
         </div>
-          
-         
-        </div>
-      </div>
-
-    </div>
-  </section><!-- End Resume Section -->
-
-  <!-- ======= Portfolio Section ======= -->
-  <section id="portfolio" class="portfolio">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>portfolio</h2>
-        <p>Project Management</p>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-12 d-flex justify-content-center">
-          <ul id="portfolio-flters">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">Around Day</li>
-            <li data-filter=".filter-card">Momos Coffee</li>
-            <li data-filter=".filter-web">Hillon</li>
-            <li data-filter=".filter-set">Balibola</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="row portfolio-container">
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/aroundday.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Around Day</h4>
-              <p>Seoul, Korea</p>
-              <div class="portfolio-links">
-                
-                <a href="https://www.instagram.com/around.day/" target="_blank" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" ><i class="bx bx-link"></i></a>
+        
+        <!-- ----- CONTACT ----- -->
+        <div id="contact" class="tab-content">
+          <div class="section-title"><h2>Contact</h2><p>Contact Me</p></div>
+          <div class="contact-blocks">
+            <div class="contact-block">
+              <div class="contact-icon" style="background:#e4c590;"><i class="bi bi-phone"></i></div>
+              <div class="contact-info-detail">
+                <div class="contact-title">Mobile</div>
+                <a href="tel:+61435680981">+61 435 680 981</a><br>
+                <a href="tel:+821088610864">+82 10 8861 0864</a>
+              </div>
+            </div>
+            <div class="contact-block">
+              <div class="contact-icon" style="background:#e4c590;"><i class="bi bi-envelope"></i></div>
+              <div class="contact-info-detail">
+                <div class="contact-title">Email</div>
+                <a href="mailto:lsh0301kr@gmail.com">lsh0301kr@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-block">
+              <div class="contact-icon" style="background:#e4c590;"><i class="bi bi-instagram"></i></div>
+              <div class="contact-info-detail">
+                <div class="contact-title">Instagram</div>
+                <a href="https://www.instagram.com/sehohahaha" target="_blank">@sehohahaha</a>
+              </div>
+            </div>
+            <div class="contact-block">
+              <div class="contact-icon" style="background:#e4c590;"><i class="fa fa-youtube-play"></i></div>
+              <div class="contact-info-detail">
+                <div class="contact-title">YouTube</div>
+                <a href="https://www.youtube.com/sehobottle" target="_blank">sehobottle</a>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/momoscoffee.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Momos Coffee</h4>
-              <p>Busan, Korea</p>
-              <div class="portfolio-links">
-                <a href="https://www.instagram.com/momos_coffee/" target="_blank" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" ><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/hillon.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Hillon</h4>
-              <p>Yeosu, Korea</p>
-              <div class="portfolio-links">
-          
-                <a href="https://www.instagram.com/hillon_official/" target="_blank" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" ><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-set">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/Balibola.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Balibola</h4>
-              <p>Melbourne, Austrailia</p>
-              <div class="portfolio-links">
-          
-                <a href="https://www.instagram.com/balibolaofficial/" target="_blank" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" ><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section><!-- End Portfolio Section -->
-
-  <!-- ======= Contact Section ======= -->
-  <section id="contact" class="contact">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Contact</h2>
-        <p>Contact Me</p>
-      </div>
-
-      <div class="row mt-2">
-
-        <div class="col-md-6 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-map"></i>
-            <h3>Mobile</h3>
-            <p><a href="tel:+61435680981" >+61 435 680 981 </a></p>
-            <p><a href="tel:+821088610864" >+82 10 8861 0864 </a></p>
-          </div>
-        </div>
-
-        <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-share-alt"></i>
-            <h3>Social Profiles</h3>
-            <div class="social-links">
-              <a href="https://www.instagram.com/sehohahaha" target="_blank"  class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="https://www.youtube.com/sehobottle" target="_blank"  class="instagram"><i class="fa fa-youtube-play"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 mt-4 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-envelope"></i>
-            <h3>Email</h3>
-            <p><a href="mailto:lsh0301kr@gmail.com">lsh0301kr@gmail.com</a></p>
-          </div>
-        </div>
-<!--        <div class="col-md-6 mt-4 d-flex align-items-stretch">-->
-<!--          <div class="info-box">-->
-<!--            <i class="bx bx-phone-call"></i>-->
-<!--            <h3>Call Me</h3>-->
-<!--            <p></p>-->
-<!--          </div>-->
-<!--        </div>-->
-      </div>
-
-    </div>
-  </section><!-- End Contact Section -->
-
-  
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
-</body>
-
-</html>
+        
+        <script>
+          // 햄버거 메뉴 + 탭 기능
+          const navLinks = document.querySelectorAll('.nav-link');
+          const tabContents = document.querySelectorAll('.tab-content');
+          const navToggle = document.querySelector('.navbar-toggle');
+          const navUl = document.querySelector('.navbar ul');
+          navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+              e.preventDefault();
+              navLinks.forEach(l => l.classList.remove('active'));
+              tabContents.forEach(tab => tab.classList.remove('active'));
+              this.classList.add('active');
+              const tabId = this.getAttribute('data-tab');
+              document.getElementById(tabId).classList.add('active');
+              window.scrollTo({top: 0, behavior: 'smooth'});
+              if(window.innerWidth < 700){
+                navUl.classList.remove('show');
+              }
+            });
+          });
+          if(navToggle) {
+            navToggle.addEventListener('click', function() {
+              navUl.classList.toggle('show');
+            });
+          }
+        </script>
+        </body>
+        </html>
