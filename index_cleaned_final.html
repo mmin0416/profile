@@ -525,58 +525,36 @@
           }
           </style>
         
-        <script>
-          // 햄버거 메뉴 + 탭 기능
-          const navLinks = document.querySelectorAll('.nav-link');
-          const tabContents = document.querySelectorAll('.tab-content');
-          const navToggle = document.querySelector('.navbar-toggle');
-          const navUl = document.querySelector('.navbar ul');
-          navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-              e.preventDefault();
-              navLinks.forEach(l => l.classList.remove('active'));
-              tabContents.forEach(tab => tab.classList.remove('active'));
-              this.classList.add('active');
-              const tabId = this.getAttribute('data-tab');
-              document.getElementById(tabId).classList.add('active');
-              window.scrollTo({top: 0, behavior: 'smooth'});
-              if(window.innerWidth < 700){
-                navUl.classList.remove('show');
-              }
-            });
-          });
-          if(navToggle) {
-            navToggle.addEventListener('click', function() {
-              navUl.classList.toggle('show');
-            });
-          }
-        </script>
-        <script>
-          document.addEventListener('DOMContentLoaded', () => {
-            const tabs = document.querySelectorAll('.nav-link');
-            const contents = document.querySelectorAll('.tab-content');
-          
-            tabs.forEach(tab => {
-              tab.addEventListener('click', e => {
-                e.preventDefault();
-          
-                contents.forEach(c => c.style.display = 'none');
-                tabs.forEach(t => t.classList.remove('active'));
-          
-                const targetId = tab.getAttribute('href');
-                const targetContent = document.querySelector(targetId);
-          
-                if (targetContent) {
-                  targetContent.style.display = 'block';
-                  tab.classList.add('active');
-                }
-              });
-            });
-          
-            if (tabs[0]) {
-              tabs[0].click(); // default tab
-            }
-          });
-          </script>
-        </body>
+        
+        
+        
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs = document.querySelectorAll('.nav-link');
+  const contents = document.querySelectorAll('.tab-content');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', e => {
+      e.preventDefault();
+
+      contents.forEach(c => c.style.display = 'none');
+      tabs.forEach(t => t.classList.remove('active'));
+
+      const targetId = tab.getAttribute('href');
+      const targetContent = document.querySelector(targetId);
+
+      if (targetContent) {
+        targetContent.style.display = 'block';
+        tab.classList.add('active');
+      }
+    });
+  });
+
+  // Show #welcome by default
+  const defaultTab = document.querySelector('.nav-link[href="#welcome"]');
+  if (defaultTab) defaultTab.click();
+});
+</script>
+
+</body>
         </html>
