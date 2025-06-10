@@ -320,7 +320,7 @@
     </div>
   </div>
 <!-- ABOUT SECTION -->
-<div id="about" class="tab-content" style="display: none; position: relative; overflow: hidden; padding: 100px 0 90px 0; display: flex; justify-content: center; align-items: flex-start; min-height: 700px;">
+<div id="about" class="tab-content" style="position: relative; overflow: hidden; padding: 100px 0 90px 0; justify-content: center; align-items: flex-start; min-height: 700px;">
   <!-- Background bubble image -->
   <div style="
     position: absolute;
@@ -364,6 +364,12 @@
 
 <!-- Responsive adjustments -->
 <style>
+  #about.tab-content {
+  display: none;
+}
+#about.tab-content.active {
+  display: flex;
+}
 @media (max-width: 768px) {
   #about {
     background-size: cover !important;
@@ -551,32 +557,5 @@
             });
           }
         </script>
-        <script>
-          document.addEventListener('DOMContentLoaded', () => {
-            const tabs = document.querySelectorAll('.nav-link');
-            const contents = document.querySelectorAll('.tab-content');
-          
-            tabs.forEach(tab => {
-              tab.addEventListener('click', e => {
-                e.preventDefault();
-          
-                contents.forEach(c => c.style.display = 'none');
-                tabs.forEach(t => t.classList.remove('active'));
-          
-                const targetId = tab.getAttribute('href');
-                const targetContent = document.querySelector(targetId);
-          
-                if (targetContent) {
-                  targetContent.style.display = 'block';
-                  tab.classList.add('active');
-                }
-              });
-            });
-          
-            if (tabs[0]) {
-              tabs[0].click(); // default tab
-            }
-          });
-          </script>
         </body>
         </html>
