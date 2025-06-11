@@ -300,25 +300,68 @@
       <li><a class="nav-link" href="#" data-tab="contact">Contact</a></li>
     </ul>
   </nav>
- <!-- ----- WELCOME ----- -->
-<div id="welcome" class="tab-content active" style="background-image: url('assets/img/welcome-bg.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-    <div class="welcome-content" style="padding: 50px 20px;">
-      <h1 style="font-family: 'Press Start 2P', cursive; font-size: 1.5em; color: #e4c590; text-shadow: 1px 1px #22243a;">Hazel Hong</h1>
-      <h2 style="margin-bottom:10px; color: #f8f1e1;">
-        Hello,<br>
-        <span style="font-weight:500;">
-          I'm a communicator who connects <span style="color:#e4c590;">coffee &amp; people!</span>
-        </span>
-      </h2>
-      <p style="font-size:1em; color:#f0dca7; margin-top:7px; margin-bottom:0;">
-        always searching for new ways to bring people together, one cup at a time.
-      </p>
-      <div class="social-links">
-        <a href="tel:+61490541522" target="_blank"><i class="fa fa-phone"></i></a>
-        <a href="mailto:mmin0416@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
-      </div>
+<!-- ----- WELCOME ----- -->
+<div id="welcome" class="tab-content active pixel-style" style="background-image: url('assets/img/welcome-bg.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+  <div class="welcome-content" style="padding: 50px 20px;">
+    <h1 class="welcome-heading">Hazel Hong</h1>
+    <h2 class="welcome-subheading">
+      Hello,<br>
+      <span style="font-weight:500;">
+        I'm a communicator who connects <span style="color:#e4c590;">coffee &amp; people!</span>
+      </span>
+    </h2>
+    <p class="welcome-text">
+      always searching for new ways to bring people together, one cup at a time.
+    </p>
+    <div class="social-links">
+      <a href="tel:+61490541522" target="_blank"><i class="fa fa-phone"></i></a>
+      <a href="mailto:mmin0416@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
     </div>
   </div>
+</div>
+
+<!-- ✅ STYLE -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+  .pixel-style, .pixel-style * {
+    font-family: 'Press Start 2P', monospace !important;
+  }
+
+  .welcome-heading {
+    font-size: 1.5em;
+    color: #e4c590;
+    text-shadow: 1px 1px #22243a;
+    margin-bottom: 12px;
+  }
+
+  .welcome-subheading {
+    margin-bottom: 10px;
+    color: #f8f1e1;
+    font-size: 1em;
+  }
+
+  .welcome-text {
+    font-size: 0.9em;
+    color: #f0dca7;
+    margin-top: 7px;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .welcome-heading {
+      font-size: 1.1em;
+    }
+
+    .welcome-subheading {
+      font-size: 0.8em;
+    }
+
+    .welcome-text {
+      font-size: 0.7em;
+    }
+  }
+</style>
 <!-- ABOUT SECTION -->
 <div id="about" class="tab-content" style="position: relative; overflow: hidden; padding: 100px 0 90px 0; display: none; justify-content: center; align-items: flex-start; min-height: 700px;">
   <!-- Background bubble image -->
