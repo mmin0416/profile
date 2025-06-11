@@ -320,7 +320,7 @@
     </div>
   </div>
 <!-- ABOUT SECTION -->
-<div id="about" class="tab-content" style="position: relative; overflow: hidden; padding: 100px 0 90px 0; justify-content: center; align-items: flex-start; min-height: 700px;">
+<div id="about" class="tab-content" style="position: relative; overflow: hidden; padding: 100px 0 90px 0; display: none; justify-content: center; align-items: flex-start; min-height: 700px;">
   <!-- Background bubble image -->
   <div style="
     position: absolute;
@@ -335,53 +335,59 @@
   "></div>
 
   <!-- Text content -->
-  <div style="
-    width: 560px;
-    padding: 8px 24px 0 24px;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 11px;
-    line-height: 1.9;
-    color: #1a1a1a;
-    background: transparent;
-    text-align: left;
-    word-break: break-word;
-    z-index: 1;
-    position: relative;
-  ">
+  <div class="about-text-box">
     <p>Hi everyone!</p>
     <p>I have a range of experiences working at different cafes in Korea and Australia.</p>
     <p>Through these experiences I have learnt customer service, teamwork, and how to set and achieve goals.</p>
     <p><span style="color:#c084fc;">Consistency and enthusiasm</span> are my strengths.</p>
     <p>I bring these qualities to every workplace.</p>
-    <div style="margin-top: 16px; font-size: 10px;">
+    <div class="about-contact">
       📞 <strong>Mobile:</strong>
-      <a href="tel:+61490541522" style="color:#4b0082; text-decoration: underline;">+61 490 541 522</a> /
+      <a href="tel:+61490541522">+61 490 541 522</a> /
       ✉️ <strong>Email:</strong>
-      <a href="mailto:mmin0416@gmail.com" style="color:#4b0082; text-decoration: underline;">mmin0416@gmail.com</a>
+      <a href="mailto:mmin0416@gmail.com">mmin0416@gmail.com</a>
     </div>
   </div>
 </div>
 
-<!-- Responsive adjustments -->
 <style>
-  #about.tab-content {
-  display: none;
-}
+/* 기본 스타일 */
 #about.tab-content.active {
-  display: flex;
+  display: flex !important;
 }
+
+.about-text-box {
+  width: 560px;
+  padding: 8px 24px 0 24px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  line-height: 1.9;
+  color: #1a1a1a;
+  background: transparent;
+  text-align: left;
+  word-break: break-word;
+  z-index: 1;
+  position: relative;
+}
+
+/* 링크 스타일 */
+.about-contact a {
+  color: #4b0082;
+  text-decoration: underline;
+  font-size: 10px;
+}
+
+/* 모바일 대응 */
 @media (max-width: 768px) {
-  #about {
-    background-size: cover !important;
-    padding: 90px 0 80px 0 !important;
-    min-height: 680px !important;
+  .about-text-box {
+    width: 85vw !important;
+    font-size: 8px !important;
+    line-height: 1.6 !important;
+    padding: 6px 12px 0 12px !important;
   }
 
-  #about div[style*="font-family: 'Press Start 2P'"] {
-    width: 85vw !important;
-    font-size: 9px !important;
-    line-height: 1.7 !important;
-    padding: 6px 14px 0 14px !important;
+  .about-contact a {
+    font-size: 8px !important;
   }
 }
 </style>
