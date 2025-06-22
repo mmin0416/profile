@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Press Start 2P', cursive;
+  background-color: #1a1a2e;
+  color: #f1f1f1;
+  overflow: hidden;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #22243a;
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+  padding: 0.5em 0;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+.tab-link {
+  color: #e4c590;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1em;
+  padding: 6px 14px;
+  border-radius: 12px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tab-link.active {
+  background: #e4c590;
+  color: #22243a !important;
+}
+
+.main-wrapper {
+  position: fixed;
+  top: 60px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+.tab-content {
+  display: none;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab-content.active {
+  display: flex;
+}
+
+.center-box {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 2em;
+  border-radius: 16px;
+  max-width: 800px;
+  width: 90%;
+  text-align: center;
+  backdrop-filter: blur(2px);
+  box-shadow: 0 0 0 3px #000, 0 0 0 6px #c59fff;
+}
+
+.center-box h1,
+.center-box h2,
+.center-box h3 {
+  color: #c59fff;
+  text-shadow: 1px 1px #000;
+}
+
+.highlight {
+  color: #e4c590;
+}
+
+a {
+  color: #f6e58d;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #ffeaa7;
+}
+
+#welcome {
+  background-image: url('assets/img/welcome-bg.jpg');
+}
+
+#about {
+  background-image: url('assets/img/about-bg.jpg');
+  color: #fff7e6;
+}
+
+#resume {
+  background-color: #0d0d1a;
+  color: #fdf6e3;
+}
+
+#contact {
+  background-color: #1a0033;
+  color: #fdf6e3;
+}
