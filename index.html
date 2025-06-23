@@ -9,596 +9,74 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="icon" href="assets/img/logo.ico">
-  <style>
-    body { font-family: 'Inter', sans-serif; background: #f8f9fa; margin: 0; }
-    .navbar {
-      width: 100%;
-      background: #22243a;
-      display: flex;
-      justify-content: center;    /* PC 중앙정렬 */
-      align-items: center;
-      padding: 0.6em 0;
-      box-shadow: 0 2px 8px rgba(34,36,58,.06);
-      position: relative;
-    }
-    .navbar ul {
-      margin: 0 auto;             /* PC 메뉴 중앙 */
-      padding: 0;
-      list-style: none;
-      display: flex;
-      gap: 32px;
-    }
-    .navbar li { display: inline-block; }
-    .navbar a { color: #e4c590; text-decoration: none; font-weight: 600; letter-spacing: 0.5px; font-size: 1.07em; padding: 4px 12px; border-radius: 12px; transition: background .18s, color .18s;}
-    .navbar a.active, .navbar a:hover { background: #e4c590; color: #22243a;}
-    /* 햄버거 메뉴 버튼 */
-    .navbar-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 2.2em;
-      color: #e4c590;
-      position: absolute;
-      right: 0;    /* 모바일 우측 끝 */
-      top: 8px;
-      cursor: pointer;
-      z-index: 1100;
-      padding-right: 14px;
-    }
-    @media (max-width: 700px) {
-      .navbar ul {
-        display: none;
-        flex-direction: column;
-        background: #22243a;
-        position: absolute;
-        top: 48px;
-        left: 0;
-        width: 100vw;
-        z-index: 1001;
-        box-shadow: 0 4px 20px rgba(34,36,58,0.17);
-        padding-bottom: 12px;
-      }
-      .navbar ul.show { display: flex; }
-      .navbar-toggle { display: block; }
-      .navbar { min-height: 44px; }
-    }
-    .tab-content { display: none; padding: 40px 12px 20px 12px; max-width: 960px; margin: 0 auto;}
-    .tab-content.active { display: block; }
-    .section-title { margin-bottom: 24px; text-align: left;}
-    
-    /* About */
-    .about-row {
-      max-width: 900px;
-      margin: 0 auto;
-      align-items: flex-start;
-      display: flex;
-      gap: 48px;
-    }
-    .profile-img { width: 160px; border-radius: 14px; box-shadow: 0 4px 24px rgba(34,36,58,0.08); background: #fff; }
-    .about-text { flex: 1; min-width: 210px; max-width:520px; margin:0; font-size:1.05em; line-height:1.7; color:#232425; }
-    
-    /* Welcome */
-    .welcome-content { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 320px;}
-    .welcome-content h1 { font-family: 'Playfair Display', serif; font-size: 2.4em; color: #e4c590; margin-top: 28px;}
-    .welcome-content h2 { font-size: 1.25em; font-weight: 400; }
-    .social-links { margin-top: 12px;}
-    .social-links a { margin: 0 7px; color: #e4c590; font-size: 1.45em; text-decoration: none; transition: color 0.2s;}
-    .social-links a:hover { color: #fff1d6;}
-    
-    /* Resume */
-    .resume-list-centered {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-    }
-    .resume-item {
-      width: 100%;
-      max-width: 410px;
-      margin: 0 auto;
-      text-align: center;
-      padding: 14px 10px 12px 10px;
-      background: #fff;
-      border-radius: 13px;
-      box-shadow: 0 2px 12px rgba(34,36,58,0.06);
-      transition: box-shadow .2s;
-    }
-    .resume-item:not(:last-child) { margin-bottom: 4px;}
-    .resume-item:hover {
-      box-shadow: 0 6px 32px rgba(34,36,58,0.11);
-      transform: scale(1.014);
-    }
-    .resume-heading {
-      font-size: 1em;
-      color: #22243a;
-      font-family: 'Playfair Display', serif;
-      font-weight: bold;
-      margin-bottom: 3px;
-      line-height: 1.35;
-      word-break: break-all;
-    }
-    .resume-location {
-      color: #e4c590;
-      font-size: 0.93em;
-      font-weight: 500;
-      margin-left: 6px;
-    }
-    .resume-period {
-      color: #7d7d7d;
-      font-size: 0.92em;
-      margin-left: 6px;
-      font-family: 'Inter', sans-serif;
-    }
-    .resume-jobs {
-      color: #555;
-      font-size: 0.97em;
-      font-weight: 500;
-      margin-top: 0px;
-      letter-spacing: 0.01em;
-      font-family: 'Inter', sans-serif;
-      word-break: break-all;
-    }
-    
-    /* Portfolio */
-    .portfolio-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      justify-content: center;
-      align-items: flex-start;
-      width: 100%;
-    }
-    .portfolio-card {
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 2px 12px rgba(34,36,58,0.08);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      min-width: 180px;
-      max-width: 270px;
-      margin: 0 auto;
-      align-items: center;
-      text-align: center;
-    }
-    .portfolio-card img {
-      width: 100%;
-      height: 170px;
-      object-fit: contain;   /* 사진 전체 보이게 */
-      background: #fff;
-      border-top-left-radius: 14px;
-      border-top-right-radius: 14px;
-      padding: 8px 0 8px 0;
-    }
-    .portfolio-info { padding: 10px 9px 8px 9px; }
-    .portfolio-info h4 { margin: 0 0 2px 0; font-size: 1em; font-weight: 600;}
-    .portfolio-info p { margin: 0 0 1px 0; color: #727b8b; font-size: 0.98em;}
-    .portfolio-info a { color: #e4c590; text-decoration: none; font-size: 0.95em;}
-    
-    /* Contact */
-    .contact-blocks {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      justify-content: center;
-      margin-top: 12px;
-    }
-    .contact-block {
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 2px 12px rgba(34,36,58,0.08);
-      display: flex;
-      align-items: center;
-      min-width: 160px;
-      max-width: 320px;
-      flex: 1 1 165px;
-      padding: 13px 16px 12px 12px;
-      transition: box-shadow .2s;
-      margin: 0 auto;
-    }
-    .contact-block:hover {
-      box-shadow: 0 4px 22px rgba(34,36,58,0.13);
-      transform: translateY(-1px) scale(1.018);
-    }
-    .contact-icon {
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      font-size: 1.3em;
-      margin-right: 10px;
-      color: #22243a;
-      background: #e4c590;
-    }
-    .contact-info-detail { flex: 1; }
-    .contact-title {
-      font-size: 1em;
-      color: #22243a;
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-    .contact-block a {
-      color: #e4c590;
-      font-weight: 500;
-      text-decoration: none;
-      word-break: break-all;
-      font-size: 0.98em;
-    }
-    .contact-block a:hover {
-      text-decoration: underline;
-      color: #b49554;
-    }
-    @media (max-width: 800px) {
-      .about-row { flex-direction: column; gap: 15px; max-width:97vw; align-items: center;}
-      .about-text { max-width:98vw !important; margin:0 auto !important; font-size:0.99em;}
-      .profile-img { margin:0 auto 8px auto; width:95px !important; min-width:75px !important; border-radius:9px;}
-      .welcome-content h1 { font-size: 1.45em; }
-      .tab-content { padding: 19px 5px 12px 5px;}
-      .resume-item { max-width: 95vw; padding: 8px 4px 7px 4px; }
-      .resume-heading { font-size: 0.97em; }
-      .resume-jobs { font-size: 0.91em;}
-      .section-title { margin-bottom: 10px;}
-      .portfolio-row { gap: 10px; }
-      .portfolio-card { min-width: 120px; max-width: 95vw;}
-      .portfolio-card img { height: 100px; padding: 4px 0 4px 0; }
-      .contact-blocks { gap: 7px; }
-      .contact-block { min-width: 95vw; max-width: 95vw; padding: 7px 6px 7px 6px;}
-      .contact-title { font-size: 0.97em;}
-    }
-    </style>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-      
-        body {
-          background-color: #1a1a2e;
-          color: #d8b4fe;
-          font-family: 'Press Start 2P', monospace;
-          margin: 0;
-          padding: 20px;
-          image-rendering: pixelated;
-        }
-      
-        h1, h2, h3 {
-          color: #c084fc;
-          text-shadow: 2px 2px #4b0082;
-        }
-      
-        a {
-          color: #d8b4fe;
-          text-decoration: none;
-          border-bottom: 1px dashed #a78bfa;
-        }
-      
-        a:hover {
-          color: #fff;
-          background-color: #a78bfa;
-        }
-      
-        .pixel-box {
-          border: 4px solid #c084fc;
-          padding: 10px;
-          margin: 20px 0;
-          box-shadow: 0 0 0 4px #fff, 0 0 0 8px #c084fc;
-        }
-      
-        ::selection {
-          background: #a78bfa;
-          color: black;
-        }
-      </style>
-      <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <nav class="navbar">
-    <button class="navbar-toggle" aria-label="Toggle navigation"><i class="bi bi-list"></i></button>
-    <ul>
-      <li><a class="nav-link active" href="#" data-tab="welcome">Home</a></li>
-      <li><a class="nav-link" href="#" data-tab="about">About</a></li>
-      <li><a class="nav-link" href="#" data-tab="resume">Resume</a></li>
-      <li><a class="nav-link" href="#" data-tab="contact">Contact</a></li>
-    </ul>
-  </nav>
-<!-- ----- WELCOME ----- -->
-<div id="welcome" class="tab-content active pixel-style" style="background-image: url('assets/img/welcome-bg.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-  <div class="welcome-content" style="padding: 50px 20px;">
-    <h1 class="welcome-heading">Hazel Hong</h1>
-    <h2 class="welcome-subheading">
-      Hello,<br>
-      <span style="font-weight:500;">
-        I'm a communicator who connects <span style="color:#e4c590;">coffee &amp; people!</span>
-      </span>
-    </h2>
-    <p class="welcome-text">
-      always searching for new ways to bring people together, one cup at a time.
-    </p>
-    <div class="social-links">
-      <a href="tel:+61490541522" target="_blank"><i class="fa fa-phone"></i></a>
-      <a href="mailto:mmin0416@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+  <ul>
+    <li><a href="#" data-tab="welcome" class="tab-link active">Home</a></li>
+    <li><a href="#" data-tab="about" class="tab-link">About</a></li>
+    <li><a href="#" data-tab="resume" class="tab-link">Resume</a></li>
+    <li><a href="#" data-tab="contact" class="tab-link">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- MAIN WRAPPER -->
+<main class="main-wrapper">
+  <section id="welcome" class="tab-content active">
+    <div class="center-box" style="background-image: url('assets/img/welcome-bg.jpg');">
+      <h1 class="main-heading">Hazel Hong</h1>
+      <h2 class="sub-heading">
+        Hello,<br>
+        <span>I'm a communicator who connects <span class="highlight">coffee &amp; people!</span></span>
+      </h2>
+      <p class="tagline">
+        always searching for new ways to bring people together, one cup at a time.
+      </p>
+      <div class="social-links">
+        <a href="tel:+61490541522" target="_blank"><i class="fa fa-phone"></i></a>
+        <a href="mailto:mmin0416@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
+      </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- ✅ STYLE -->
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-  .pixel-style, .pixel-style * {
-    font-family: 'Press Start 2P', monospace !important;
-  }
-
-  .welcome-heading {
-    font-size: 1.5em;
-    color: #e4c590;
-    text-shadow: 1px 1px #22243a;
-    margin-bottom: 12px;
-  }
-
-  .welcome-subheading {
-    margin-bottom: 10px;
-    color: #f8f1e1;
-    font-size: 1em;
-  }
-
-  .welcome-text {
-    font-size: 0.9em;
-    color: #f0dca7;
-    margin-top: 7px;
-    margin-bottom: 0;
-  }
-
-  @media (max-width: 768px) {
-    .welcome-heading {
-      font-size: 1.1em;
-    }
-
-    .welcome-subheading {
-      font-size: 0.8em;
-    }
-
-    .welcome-text {
-      font-size: 0.7em;
-    }
-  }
-</style>
-<!-- ABOUT SECTION -->
-<div id="about" class="tab-content" style="position: relative; overflow: hidden; padding: 100px 0 90px 0; justify-content: center; align-items: flex-start; min-height: 700px;">
-  <!-- Background bubble image -->
-  <div style="
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('assets/img/about-bg.jpg') no-repeat center top;
-    background-size: contain;
-    opacity: 1;
-    z-index: 0;
-    pointer-events: none;
-  "></div>
-
-  <!-- Text content -->
-  <div style="
-    width: 560px;
-    padding: 8px 24px 0 24px;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 11px;
-    line-height: 1.9;
-    color: #1a1a1a;
-    background: transparent;
-    text-align: left;
-    word-break: break-word;
-    z-index: 1;
-    position: relative;
-  ">
-    <p>Hi everyone!</p>
-    <p>I have a range of experiences working at different cafes in Korea and Australia.</p>
-    <p>Through these experiences I have learnt customer service, teamwork, and how to set and achieve goals.</p>
-    <p><span style="color:#c084fc;">Consistency and enthusiasm</span> are my strengths.</p>
-    <p>I bring these qualities to every workplace.</p>
-    <div style="margin-top: 16px; font-size: 10px;">
-      📞 <strong>Mobile:</strong>
-      <a href="tel:+61490541522" style="color:#4b0082; text-decoration: underline;">+61 490 541 522</a> /
-      ✉️ <strong>Email:</strong>
-      <a href="mailto:mmin0416@gmail.com" style="color:#4b0082; text-decoration: underline;">mmin0416@gmail.com</a>
+  <section id="about" class="tab-content">
+    <div class="chat-box">
+      <h2>About</h2>
+      <p>Hi everyone!</p>
+      <p>I have a range of experiences working at different cafes in Korea and Australia.</p>
+      <p>Through these experiences I have learnt customer service, teamwork, and how to set and achieve goals.</p>
+      <p><span class="highlight">Consistency and enthusiasm</span> are my strengths.</p>
+      <p>I bring these qualities to every workplace.</p>
+      <p><strong>📞</strong> +61 490 541 522 / <strong>✉️</strong> mmin0416@gmail.com</p>
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- Responsive adjustments -->
-<style>
-  #about.tab-content {
-  display: none;
-}
-#about.tab-content.active {
-  display: flex;
-}
-@media (max-width: 768px) {
-  #about {
-    background-size: cover !important;
-    padding: 90px 0 80px 0 !important;
-    min-height: 680px !important;
-  }
+  <section id="resume" class="tab-content">
+    <div class="chat-box">
+      <h2>My Resume</h2>
+      <ul>
+        <li>☕ Barista at Gloria Jeans (2023, AU)</li>
+        <li>🏠 Home Cafe Owner (2021-2022, KR)</li>
+        <li>👩‍🏫 Coffee Class Tutor for Beginners</li>
+        <li>📚 Studied Hospitality & Café Management</li>
+        <li>💬 Fluent in Korean and English</li>
+      </ul>
+    </div>
+  </section>
 
-  #about div[style*="font-family: 'Press Start 2P'"] {
-    width: 85vw !important;
-    font-size: 9px !important;
-    line-height: 1.7 !important;
-    padding: 6px 14px 0 14px !important;
-  }
-}
-</style>
-  <!-- ----- RESUME ----- -->
-  <div id="resume" class="tab-content">
-    <div class="section-title"><h2>Resume</h2></div>
-    <div class="resume-list-centered">
-      <div class="resume-item">
-        <div class="resume-heading">
-          Balibola <span class="resume-location">Melbourne, Australia</span> <span class="resume-period">Feb 2024 - Dec 2024</span>
-        </div>
-        <div class="resume-jobs">Barista Manager · Coffee Trainer · Menu Developer · Quality Control</div>
-      </div>
-      <div class="resume-item">
-        <div class="resume-heading">
-          Tone Coffee <span class="resume-location">Melbourne, Australia</span> <span class="resume-period">Feb 2024 - May 2024</span>
-        </div>
-        <div class="resume-jobs">Barista · Retailer · Menu Developer · Quality Control</div>
-      </div>
-      <div class="resume-item">
-        <div class="resume-heading">
-          8 Murray Cafe <span class="resume-location">Melbourne, Australia</span> <span class="resume-period">Sep 2023 - Dec 2023</span>
-        </div>
-        <div class="resume-jobs">Barista Manager · Coffee Trainer · Quality Control</div>
-      </div>
-      <div class="resume-item">
-        <div class="resume-heading">
-          Momos Coffee <span class="resume-location">Busan, Korea</span> <span class="resume-period">Jan 2021 - May 2023</span>
-        </div>
-        <div class="resume-jobs">Barista Manager · Coffee Trainer · Quality Control</div>
-      </div>
-      <div class="resume-item">
-        <div class="resume-heading">
-          Around Day <span class="resume-location">Seoul, Korea</span> <span class="resume-period">Jun 2020 - Jan 2021</span>
-        </div>
-        <div class="resume-jobs">Barista · Coffee Trainer · Quality Control</div>
-      </div>
-      <div class="resume-item">
-        <div class="resume-heading">
-          Top Paddock <span class="resume-location">Melbourne, Australia</span> <span class="resume-period">Jan 2019 - Apr 2020</span>
-        </div>
-        <div class="resume-jobs">Barista · Quality Control</div>
-      </div>
-      <div class="resume-item">
-        <div class="resume-heading">
-          Bawa Cafe <span class="resume-location">Melbourne, Australia</span> <span class="resume-period">Jul 2018 - Dec 2018</span>
-        </div>
-        <div class="resume-jobs">Barista · Quality Control</div>
-      </div>
-      <div class="resume-item">
-        <div class="resume-heading">
-          LAB The Bakery Cafe <span class="resume-location">Sydney, Australia</span> <span class="resume-period">Jan 2018 - Jun 2018</span>
-        </div>
-        <div class="resume-jobs">Barista · Quality Control</div>
-      </div>
-      <div class="resume-item">
-        <div class="resume-heading">
-          Coffee Tomorrow <span class="resume-location">Seoul, Korea</span> <span class="resume-period">Apr 2017 - Dec 2017</span>
-        </div>
-        <div class="resume-jobs">Barista · Roaster · Quality Control</div>
-        </div>
-        <div class="resume-item">
-          <div class="resume-heading">
-            My Other Brother <span class="resume-location">Melbourne, Australia</span> <span class="resume-period">Nov 2016 - Apr 2017</span>
-          </div>
-          <div class="resume-jobs">Barista</div>
-        </div>
-        <div class="resume-item">
-          <div class="resume-heading">
-            Caffe Cherry Beans <span class="resume-location">Sydney, Australia</span> <span class="resume-period">May 2016 - Nov 2016</span>
-          </div>
-          <div class="resume-jobs">Barista · Quality Control</div>
-        </div>
-        <div class="resume-item">
-          <div class="resume-heading">
-            Parrotbill Coffee <span class="resume-location">Seoul, Korea</span> <span class="resume-period">Dec 2015 - Apr 2016</span>
-          </div>
-          <div class="resume-jobs">Barista · Roaster · Quality Control</div>
-        </div>
-        <div class="resume-item">
-          <div class="resume-heading">
-            HoLeeChow <span class="resume-location">Seoul, Korea</span> <span class="resume-period">Mar 2014 - Dec 2015</span>
-          </div>
-          <div class="resume-jobs">Coffee Maker · Front of House</div>
-        </div>
-        <div class="resume-item">
-          <div class="resume-heading">
-            Republic of Korea Army <span class="resume-location">The 700th Commando Regiment</span> <span class="resume-period">Jun 2010 - Apr 2012</span>
-          </div>
-          <div class="resume-jobs">Soldier · Sergeant</div>
-        </div>
-        <div class="resume-item">
-          <div class="resume-heading">
-            Samcheonggak Cafe Dawon <span class="resume-location">Seoul, Korea</span> <span class="resume-period">Nov 2009 - Jun 2010</span>
-          </div>
-          <div class="resume-jobs">Coffee Maker · Front of House</div>
-        </div>
-        </div>
-        </div>
-        
-       
-        <!-- ----- CONTACT ----- -->
-        <div id="contact" class="tab-content">
-            <div class="section-title">
-              <h2>Contact</h2>
-              <p>Contact Me</p>
-            </div>
-            <div class="contact-blocks">
-          
-              <div class="contact-block" style="display: flex; align-items: center; background: #d7d1e9;">
-                <div class="contact-icon" style="background:#e4c590; flex-shrink: 0;">
-                  <i class="bi bi-phone"></i>
-                </div>
-                <div class="contact-info-detail" style="min-width: 400px; margin-left: 10px; white-space: nowrap;">
-                  <div class="contact-title">Mobile</div>
-                  <a href="tel:+61490541522" style="color:#2e1a47; font-size:0.9em;">0490 541 522</a>
-                </div>
-              </div>
-          
-              <div class="contact-block" style="display: flex; align-items: center; background: #d7d1e9;">
-                <div class="contact-icon" style="background:#e4c590; flex-shrink: 0;">
-                  <i class="bi bi-envelope"></i>
-                </div>
-                <div class="contact-info-detail" style="min-width: 400px; margin-left: 10px; white-space: nowrap; overflow-wrap: anywhere;">
-                  <div class="contact-title">Email</div>
-                  <a href="mailto:mmin0416@gmail.com" style="display:inline-block; max-width:100%; color:#2e1a47; font-size:0.9em;">
-                    mmin0416@gmail.com
-                  </a>
-                </div>
-              </div>
-          
-            </div>
-          </div>
-          
-          <style>
-          @media (max-width: 768px) {
-            .contact-block {
-              flex-direction: column !important;
-              align-items: flex-start !important;
-            }
-          
-            .contact-info-detail {
-              min-width: auto !important;
-              width: 100% !important;
-              white-space: normal !important;
-            }
-          }
-          </style>
-        
-        <script>
-          // 햄버거 메뉴 + 탭 기능
-          const navLinks = document.querySelectorAll('.nav-link');
-          const tabContents = document.querySelectorAll('.tab-content');
-          const navToggle = document.querySelector('.navbar-toggle');
-          const navUl = document.querySelector('.navbar ul');
-          navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-              e.preventDefault();
-              navLinks.forEach(l => l.classList.remove('active'));
-              tabContents.forEach(tab => tab.classList.remove('active'));
-              this.classList.add('active');
-              const tabId = this.getAttribute('data-tab');
-              document.getElementById(tabId).classList.add('active');
-              window.scrollTo({top: 0, behavior: 'smooth'});
-              if(window.innerWidth < 700){
-                navUl.classList.remove('show');
-              }
-            });
-          });
-          if(navToggle) {
-            navToggle.addEventListener('click', function() {
-              navUl.classList.toggle('show');
-            });
-          }
-        </script>
-        </body>
-        </html>
+  <section id="contact" class="tab-content">
+    <div class="chat-box">
+      <h2>Contact Me</h2>
+      <p>If you're interested in working together or just want to connect, feel free to reach out!</p>
+      <p>📞 Mobile: <a href="tel:+61490541522">+61 490 541 522</a></p>
+      <p>📧 Email: <a href="mailto:mmin0416@gmail.com">mmin0416@gmail.com</a></p>
+      <p>📍 Based in Sydney, Australia</p>
+    </div>
+  </section>
+</main>
+<script src="assets/js/script.js"></script>
+</body>
+</html>
